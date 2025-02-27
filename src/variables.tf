@@ -48,3 +48,10 @@ variable "tags" {
     CreatedBy = "Terraform"
   }
 }
+
+variable "log_analytics_cluster" {
+  type = object({
+    sku_size = number
+  })
+  description = "Log analytics cluster configuration"
+}

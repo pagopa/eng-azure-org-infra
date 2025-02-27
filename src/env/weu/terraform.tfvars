@@ -8,6 +8,10 @@ prefix         = "org"
 location       = "westeurope"
 location_short = "weu"
 
+log_analytics_cluster = {
+  sku_size = 300
+}
+
 tags = {
   CreatedBy   = "Terraform"
   Environment = "PROD"

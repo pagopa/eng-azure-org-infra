@@ -8,6 +8,10 @@ prefix         = "org"
 location       = "italynorth"
 location_short = "itn"
 
+log_analytics_cluster = {
+  sku_size = 100
+}
+
 tags = {
   CreatedBy   = "Terraform"
   Environment = "PROD"

@@ -17,7 +17,7 @@ resource "azapi_resource" "log_analytics_cluster" {
   tags     = var.tags
   body = {
     sku = {
-      capacity = 100
+      capacity = var.log_analytics_cluster.sku_size
       name     = "CapacityReservation"
     }
     properties = {

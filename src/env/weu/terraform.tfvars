@@ -9,7 +9,7 @@ location       = "westeurope"
 location_short = "weu"
 
 log_analytics_cluster = {
-  sku_size = 300
+  sku_size = 500
 }
 
 tags = {

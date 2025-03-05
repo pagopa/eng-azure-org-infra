@@ -2,12 +2,12 @@ name: AKS Scheduler
 
 on:
   schedule:
-    - cron: '0 20 * * *' # 8 PM
-    - cron: '0 8 * * *'  # 8 AM
+    - cron: '0 20 * * 1-5' # 8 PM
+    - cron: '0 8 * * 1-5'  # 8 AM
 
 jobs:
   manage-aks:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-22.04"
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683

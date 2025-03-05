@@ -7,7 +7,7 @@ github = {
 }
 subscriptions = {
   "DevOpsLab" = {
-    subscription_id   = "ac17914c-79bf-48fa-831e-1359ef74c1d5"
-    role_name         = ["Contributor"]
+    subscription_id = "ac17914c-79bf-48fa-831e-1359ef74c1d5"
+    role_name       = ["Contributor"]
   }
 }

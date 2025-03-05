@@ -39,6 +39,6 @@ variable "github" {
 variable "subscriptions" {
   type = map(object({
     subscription_id = string,
-    role_name         = set(string)
+    role_name       = set(string)
   }))
 }

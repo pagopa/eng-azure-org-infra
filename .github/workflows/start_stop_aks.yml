@@ -30,7 +30,7 @@ jobs:
       - name: List AKS clusters and resource groups
         id: get-clusters
         run: |
-          aks_clusters=$(az aks list --query "[].{name: name, resourceGroup: resourceGroup}" -o tsv)
+          aks_clusters=$(az aks list --query "[].{name: name, resourceGroup: resourceGroup}" -o table)
           echo "AKS_CLUSTERS=$aks_clusters" >> $GITHUB_ENV
           echo "AKS clusters found and saved to GitHub env variable."
 

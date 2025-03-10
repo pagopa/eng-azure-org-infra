@@ -38,6 +38,7 @@ jobs:
         run: |
           clusters=${{ env.aks_clusters }}
           for row in $(echo "$clusters" | jq -r '.'); do
+            echo "$row"
             name=$(echo "$row" | jq -r '.name')
             resourceGroup=$(echo "$row" | jq -r '.resourceGroup')
             echo "Stopping AKS cluster: $name in resource group: $resourceGroup"

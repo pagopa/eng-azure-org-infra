@@ -25,7 +25,7 @@ jobs:
           subscription-id: ${{ secrets.AZ_SUBSCRIPTION_ID }}
       
       - name: Switch to target subscription
-        run: az account set --subscription ${{ secrets.TARGET_SUBSCRIPTION_ID }}    
+        run: az account set --subscription ${{ secrets.AZ_TARGET_SUBSCRIPTION_ID }}    
 
       - name: List AKS clusters and resource groups
         id: get-clusters

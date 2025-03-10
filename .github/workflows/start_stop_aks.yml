@@ -35,8 +35,9 @@ jobs:
           echo ${{ env.clusters_and_rgs }}
 
       - name: Stop AKS clusters
-        if: ${{ github.event.schedule == '0 20 * * 1-5' }}
+        #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
+          echo ${{ env.clusters_and_rgs }}
           IFS=$'\n'
           for cluster_rg in ${{ env.clusters_and_rgs }}
           do

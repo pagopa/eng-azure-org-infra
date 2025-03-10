@@ -41,7 +41,7 @@ jobs:
           do
             cluster=$(echo ${cluster_rg} | awk '{print $1}')
             rg=$(echo ${cluster_rg} | awk '{print $2}')
-            #az aks stop --resource-group ${rg} --name ${cluster}
+            echo "az aks stop --resource-group ${rg} --name ${cluster}""
           done
 
       - name: Start AKS clusters

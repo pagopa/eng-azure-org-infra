@@ -30,7 +30,7 @@ jobs:
       - name: List AKS clusters and resource groups
         id: get-clusters
         run: |
-          clusters_and_rgs=$(az aks list --query "[].{name:name, resourceGroup:resourceGroup}" -o json)
+          clusters_and_rgs=$(az aks list --query "[].{name:name, resourceGroup:resourceGroup}" -o tsv)
           echo "clusters_and_rgs=${clusters_and_rgs}" >> $GITHUB_ENV
 
       - name: Stop AKS clusters

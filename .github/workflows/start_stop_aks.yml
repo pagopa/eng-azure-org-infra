@@ -36,7 +36,7 @@ jobs:
       - name: Stop AKS clusters
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
-          cclusters=${{ env.clusters }}
+          clusters=${{ env.clusters }}
           echo "Clusters: $clusters"
           for row in $(echo "${clusters}" | jq -r '.[] | @base64'); do
             _jq() {

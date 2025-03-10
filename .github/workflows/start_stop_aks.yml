@@ -36,12 +36,13 @@ jobs:
       - name: Stop AKS clusters
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
-          #for row in $($echo {{ env.aks_clusters }} | jq -r '.[]'); do
-            name=$($echo ${{ env.aks_clusters }} | jq -r '.[]'| jq -r '.name')
-            resourceGroup==$($echo ${{ env.aks_clusters }} | jq -r '.resourceGroup')
+          clusters= ${{ env.aks_clusters }}
+          #for row in $(echo ${{ env.aks_clusters }} | jq -c '.[]'); do
+            name=$(echo $clusters | jq -c '.[]' | jq -r '.name')
+            resourceGroup=$(eecho $clusters | jq -c '.[]' | jq -r '.resourceGroup')
             echo "Stopping AKS cluster: $name in resource group: $resourceGroup"
-            #az aks stop --name "$name" --resource-group "$resourceGroup"
-          #done
+            echo "az aks stop --name "$name" --resource-group "$resourceGroup""
+          done
 
       - name: Start AKS clusters
         if: ${{ github.event.schedule == '0 8 * * 1-5' }}

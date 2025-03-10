@@ -30,19 +30,20 @@ jobs:
       - name: List AKS clusters and resource groups
         id: get-clusters
         run: |
-          clusters=$(az aks list --query "[].{name:name,resourceGroup:resourceGroup}" -o table)
-          echo "clusters=$clusters" >> $GITHUB_ENV
+          clusters=$(az aks list --query "[].{name:name,resourceGroup:resourceGroup}" -o json)
+          echo "aks_clusters=$clusters" >> $GITHUB_ENV
 
       - name: Stop AKS clusters
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
-          clusters=${{ env.clusters }}
-          for cluster in $clusters; do
-            name=$(echo "$cluster" | awk '{print $1}')
-            resourceGroup=$(echo "$cluster" | awk '{print $2}')
-            echo "| $name | $resourceGroup |"
-            echo "Stopping AKS cluster: $name in resource group: $resourceGroup"
-            #az aks stop --name "$name" --resource-group "$resourceGroup"
+          clusters=${{ env.aks_clusters }}
+          for row in $(echo "${clusters}" | jq -r '.[] | @base64'); do
+            _jq() {
+              echo ${row} | base64 --decode | jq -r ${1}
+            }
+            name=$(_jq '.name')
+            resourceGroup=$(_jq '.resourceGroup')
+            echo "az aks stop --name "$name" --resource-group "$resourceGroup""
           done
 
       - name: Start AKS clusters

@@ -39,11 +39,11 @@ jobs:
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
           IFS=$'\n'
-          for cluster_rg in ${{ env.aks_clusters }}
+          for cluster_rg in $(echo "${{ env.aks_clusters }}" | grep -v '^$')
           do
             cluster=$(echo ${cluster_rg} | awk '{print $1}')
             rg=$(echo ${cluster_rg} | awk '{print $2}')
-            az aks stop --resource-group ${rg} --name ${cluster}
+            az aks stop --resource-group "${rg}" --name "${cluster}"
           done
 
       - name: Start AKS clusters

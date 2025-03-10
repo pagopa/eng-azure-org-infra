@@ -36,8 +36,9 @@ jobs:
       - name: Stop AKS clusters
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
-          #IFS=$'\n'
+          IFS=$'\n'
           for cluster_rg in ${{ env.clusters_and_rgs }}; do
+            echo $cluster_rg
             cluster=$(echo ${cluster_rg} | awk '{print $1}')
             rg=$(echo ${cluster_rg} | awk '{print $2}')
             echo "az aks stop --resource-group ${rg} --name ${cluster}"

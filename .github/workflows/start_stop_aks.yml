@@ -40,8 +40,9 @@ jobs:
           IFS=$'\n'
           for aks in ${{ env.AKS_CLUSTERS }}
           do
-            name=$(echo $aks | awk '{print $1}')
-            resourceGroup=$(echo $aks | awk '{print $2}')
+            name=$(echo $aks | cut -f1)
+            resourceGroup=$(echo $aks | cut -f2)
+  
             echo "Stopping AKS cluster: $name in resource group: $resourceGroup"
             az aks stop --name $name --resource-group $resourceGroup
           done

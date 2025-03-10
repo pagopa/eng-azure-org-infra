@@ -37,10 +37,10 @@ jobs:
         #if: ${{ github.event.schedule == '0 20 * * 1-5' }}
         run: |
           clusters=${{ env.clusters_and_rgs }}
-          for cluster in $(echo "$clusters" | jq -c '.[]'); do
-              name=$(echo "$cluster" | jq -r '.name')
-              resourceGroup=$(echo "$cluster" | jq -r '.resourceGroup')
-              az aks stop --name "$name" --resource-group "$resourceGroup"
+          for row in $(echo "${clusters}" | jq -r '.[] | @json'); do
+             name=$(echo "$row" | jq -r '.name')
+             resourceGroup=$(echo "$row" | jq -r '.resourceGroup')
+             az aks stop --name "$name" --resource-group "$resourceGroup"
           done
 
       - name: Start AKS clusters

@@ -1,4 +1,4 @@
-name: Last Update Repo
+name: Update Repo for active workflow
 
 env:
   UPDATE_FILE: last_update_repo
@@ -60,5 +60,5 @@ jobs:
           gh pr create \
             --head $PR_BRANCH \
             --base $PR_BASE \
-            --title "Last Update Repo changed" \
+            --title "Update Repo for Active Workflow" \
             --body "Update Repo with date ${{ env.DATE }}"

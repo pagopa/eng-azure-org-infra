@@ -1,3 +1,4 @@
+# Scopo: mantiene attive le GitHub Actions forzando un update periodico
 name: Update Repo for active workflow
 
 env:
